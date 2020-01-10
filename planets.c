@@ -11,13 +11,6 @@ consumeTime()
 
 /*	double asave; */
 	ididit = 1;
-#if 0
-	/* Don't wory about this */
-	if (future[FTBEAM] <= d.date+Time && d.remcom != 0 && condit != IHDOCKED) {
-		/* We are about to be tractor beamed -- operation fails */
-		return 1;
-	}
-#endif
 /*	asave = future[FSNOVA]; */
 /* defer supernovas */
 /*	future[FSNOVA] = 1e30; */

@@ -1,11 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#ifndef WINDOWS
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
-#endif
 
 void
 randomize()
@@ -13,7 +11,6 @@ randomize()
 	srand((int)time(NULL));
 }
 
-#ifndef WINDOWS
 int
 max(a, b)
 	int a, b;
@@ -33,9 +30,9 @@ min(a, b) {
 int
 getch()
 {
-    char chbuf[1];
-    struct termios oldstate, newstate;
-    fflush(stdout);
+	char chbuf[1];
+	struct termios oldstate, newstate;
+	fflush(stdout);
 	tcgetattr(0, &oldstate);
 	newstate = oldstate;
 	newstate.c_lflag &= ~ICANON;
@@ -43,6 +40,5 @@ getch()
 	tcsetattr(0, TCSANOW,  &newstate);
 	read(0, &chbuf, 1);
 	tcsetattr(0, TCSANOW, &oldstate);
-        return chbuf[0];
+	return chbuf[0];
 }
-#endif

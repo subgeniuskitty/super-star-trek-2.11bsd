@@ -1,9 +1,6 @@
 #define INCLUDED	/* Define externs here */
 #include "sst.h"
 #include <ctype.h>
-#ifdef MSDOS
-#include <dos.h>
-#endif
 #include <time.h>
 	
 static char line[128], *linep = line;

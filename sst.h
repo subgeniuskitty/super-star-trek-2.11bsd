@@ -8,13 +8,6 @@
 #define EXTERN
 #endif
 
-#ifdef WINDOWS
-/*#define DEBUG */
-#define SCORE
-#define CLOAKING
-#define CAPTURE
-#endif
-
 #ifdef CLOAKING
 #define ndevice (16)
 #else
@@ -477,10 +470,8 @@ void attakreport();
 void movetho();
 void probe();
 
-#ifndef WINDOWS
 int min(int, int);
 int max(int, int);
-#endif
 void randomize();
 int getch();
 
