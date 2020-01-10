@@ -497,8 +497,8 @@ void impuls(void) {
 	if (alldone) return;
 	power = 20.0 + 100.0*dist;
 	energy -= power;
-//	Time = dist/0.095; Don't recalculate because lmove may have
-//	adjusted it for tractor beaming
+/*	Time = dist/0.095; Don't recalculate because lmove may have */
+/*	adjusted it for tractor beaming */
 	if (energy <= 0) finish(FNRG);
 	return;
 }
@@ -521,7 +521,7 @@ void warp(int i) {
 		if (damage[DWARPEN] > 10.0) {
 			chew();
 			skip(1);
-			prout("Engineer Scott- \"The warp engines are damaged, Sir.\""); // Was "Impulse" 10/2013
+			prout("Engineer Scott- \"The warp engines are damaged, Sir.\""); /* Was "Impulse" 10/2013 */
 			return;
 		}
 		if (damage[DWARPEN] > 0.0 && warpfac > 4.0) {
@@ -917,11 +917,11 @@ void probe(void) {
 	probeiny /= bigger;
 	probeinx /= bigger;
 	proben = 10.0*dist*bigger +0.5;
-	probex = quadx*10 + sectx - 1;	// We will use better packing than original
+	probex = quadx*10 + sectx - 1;	/* We will use better packing than original */
 	probey = quady*10 + secty - 1;
 	probecx = quadx;
 	probecy = quady;
-	future[FDSPROB] = d.date + 0.01; // Time to move one sector
+	future[FDSPROB] = d.date + 0.01; /* Time to move one sector */
 	prout("Ensign Chekov-  \"The deep space probe is launched, Captain.\"");
 	return;
 }

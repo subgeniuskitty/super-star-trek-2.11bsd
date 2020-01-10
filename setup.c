@@ -182,7 +182,7 @@ void abandn(void) {
 	imine=0;
 	iscraft=0; /* Gallileo disappears */
 #ifdef CAPTURE
-	brigcapacity = 300; // Less capacity now
+	brigcapacity = 300; /* Less capacity now */
 	brigfree = brigcapacity;
 #endif
 #ifdef CLOAKING
@@ -209,9 +209,9 @@ void setup(void) {
 #ifdef DEBUG
 	idebug = 0;
 #endif
-	//  Decide how many of everything
-	if (choose()) return; // frozen game
-	// Prepare the Enterprise
+	/*  Decide how many of everything */
+	if (choose()) return; /* frozen game */
+	/* Prepare the Enterprise */
 	ship = IHE;
 	energy = inenrg = 5000.0;
 	shield = inshld = 2500.0;
@@ -225,11 +225,11 @@ void setup(void) {
 	warpfac = 5.0;
 	wfacsq = warpfac * warpfac;
 	for (i=0; i <= ndevice; i++) damage[i] = 0.0;
-	// Set up assorted game parameters
+	/* Set up assorted game parameters */
 	batx = baty = 0;
 	d.date = indate = 100.0*(int)(31.0*Rand()+20.0);
 	d.killk = d.killc = nkinks = nhelp = resting = casual = d.nromkl = 0;
-// Added d.starkl=0 6/2015
+/* Added d.starkl=0 6/2015 */
     isatb = iscate = imine = icrystl = icraft = d.nsckill = d.nplankl = d.starkl = 0;
 	iscraft = 1;
 	landed = -1;
@@ -237,18 +237,18 @@ void setup(void) {
 	docfac = 0.25;
 	for (i = 1; i <= 8; i++)
 		for (j = 1; j <= 8; j++) d.newstuf[i][j] = starch[i][j] = 0;
-	// Initialize times for extraneous events
+	/* Initialize times for extraneous events */
 	future[FSNOVA] = d.date + expran(0.5 * intime);
 	future[FTBEAM] = d.date + expran(1.5 * (intime / d.remcom));
-	future[FSNAP] = d.date + 1.0 + Rand(); // Force an early snapshot
+	future[FSNAP] = d.date + 1.0 + Rand(); /* Force an early snapshot */
 	future[FBATTAK] = d.date + expran(0.3*intime);
 	future[FCDBAS] = 1e30;
 	future[FSCMOVE] = d.nscrem ? d.date+0.2777 : 1e30;
 	future[FSCDBAS] = 1e30;
 	future[FDSPROB] = 1e30;
-	// Starchart is functional
+	/* Starchart is functional */
 	stdamtim = 1e30;
-	// Put stars in the galaxy
+	/* Put stars in the galaxy */
 	instar = 0;
 	for (i=1; i<=8; i++)
 		for (j=1; j<=8; j++) {
@@ -256,7 +256,7 @@ void setup(void) {
 			instar += k;
 			d.galaxy[i][j] = k;
 		}
-	// Locate star bases in galaxy
+	/* Locate star bases in galaxy */
 	for (i = 1; i <= inbase; i++) {
 		int contflag;
 		do {
@@ -286,10 +286,10 @@ void setup(void) {
 		starch[ix][iy] = -1;
 		d.galaxy[ix][iy] += 10;
 	}
-	// Position ordinary Klingon Battle Cruisers
+	/* Position ordinary Klingon Battle Cruisers */
 	krem = inkling - incom - d.nscrem;
 	klumper = 0.25*skill*(9.0-length)+1.0;
-	if (klumper > 9) klumper = 9; // Can't have more than 9 in quadrant
+	if (klumper > 9) klumper = 9; /* Can't have more than 9 in quadrant */
 	do {
 		double r = Rand();
 		int klump = (1.0 - r*r)*klumper;
@@ -300,7 +300,7 @@ void setup(void) {
 		while (d.galaxy[ix][iy] + klump >= 1000);
 		d.galaxy[ix][iy] += klump;
 	} while (krem > 0);
-	// Position Klingon Commander Ships
+	/* Position Klingon Commander Ships */
 #ifdef DEBUG
 	klumper = 1;
 #endif
@@ -319,7 +319,7 @@ void setup(void) {
 			}
 			while ((d.galaxy[ix][iy] < 99 && Rand() < 0.75)||
 				   d.galaxy[ix][iy]>899);
-			// check for duplicate
+			/* check for duplicate */
 			for (j = 1; j < i; j++)
 				if (d.cx[j]==ix && d.cy[j]==iy) break;
 		} while (j < i);
@@ -327,23 +327,23 @@ void setup(void) {
 		d.cx[i] = ix;
 		d.cy[i] = iy;
 	}
-	// Locate planets in galaxy
+	/* Locate planets in galaxy */
 	for (i = 1; i <= inplan; i++) {
 		do iran8(&ix, &iy);
 		while (d.newstuf[ix][iy] > 0);
 		d.newstuf[ix][iy] = 1;
 		d.plnets[i].x = ix;
 		d.plnets[i].y = iy;
-		d.plnets[i].pclass = Rand()*3.0 + 1.0; // Planet class M N or O
-		d.plnets[i].crystals = 1.5*Rand();		// 1 in 3 chance of crystals
+		d.plnets[i].pclass = Rand()*3.0 + 1.0; /* Planet class M N or O */
+		d.plnets[i].crystals = 1.5*Rand();		/* 1 in 3 chance of crystals */
 		d.plnets[i].known = 0;
 	}
-	// Locate Romulans
+	/* Locate Romulans */
 	for (i = 1; i <= d.nromrem; i++) {
 		iran8(&ix, &iy);
 		d.newstuf[ix][iy] += 10;
 	}
-	// Locate the Super Commander
+	/* Locate the Super Commander */
 	if (d.nscrem > 0) {
 		do iran8(&ix, &iy);
 		while (d.galaxy[ix][iy] >= 900);
@@ -351,7 +351,7 @@ void setup(void) {
 		d.isy = iy;
 		d.galaxy[ix][iy] += 100;
 	}
-	// Place thing (in tournament game, thingx == -1, don't want one!)
+	/* Place thing (in tournament game, thingx == -1, don't want one!) */
 	if (Rand() < 0.1 && thingx != -1) {
 		iran8(&thingx, &thingy);
 	}
@@ -359,7 +359,7 @@ void setup(void) {
 		thingx = thingy = 0;
 	}
 
-//	idate = date;
+/*	idate = date; */
 	skip(3);
 	d.snap = 0;
 		
@@ -398,7 +398,7 @@ void setup(void) {
 	skip(1);
 	newqad(0);
 	if (nenhere) shldup=1.0;
-	if (neutz) attack(0);	// bad luck to start in a Romulan Neutral Zone
+	if (neutz) attack(0);	/* bad luck to start in a Romulan Neutral Zone */
 }
 
 int choose(void) {
@@ -412,14 +412,14 @@ int choose(void) {
 		else
 			proutn("Would you like a regular, tournament, or frozen game?");
 		scan();
-		if (strlen(citem)==0) continue; // Try again
+		if (strlen(citem)==0) continue; /* Try again */
 		if (isit("tournament")) {
 			while (scan() == IHEOL) {
 				proutn("Type in tournament number-");
 			}
 			if (aaitem == 0) {
 				chew();
-				continue; // We don't want a blank entry
+				continue; /* We don't want a blank entry */
 			}
 			tourn = (int)aaitem;
 			thingx = -1;
@@ -432,7 +432,7 @@ int choose(void) {
 			if (*passwd==0) continue;
 			randomize();
 			Rand(); Rand(); Rand(); Rand();
-			if (!alldone) thawed = 1; // No plaque if not finished
+			if (!alldone) thawed = 1; /* No plaque if not finished */
 			report(1);
 			return TRUE;
 		}
@@ -480,7 +480,7 @@ int choose(void) {
 	if (strcmp(passwd, "debug")==0) idebug = 1;
 #endif
 
-	// Use parameters to generate initial values of things
+	/* Use parameters to generate initial values of things */
 	damfac = 0.5 * skill;
 	d.rembase = 3.0*Rand()+2.0;
 	inbase = d.rembase;
@@ -489,7 +489,7 @@ int choose(void) {
 	d.nscrem = (skill > SFAIR? 1 : 0);
 	d.remtime = 7.0 * length;
 	intime = d.remtime;
-	d.remkl = 2.0*intime*((skill+1 - 2*Rand())*skill*0.1+.15); // d.remkl and inkling includes commanders and SC
+	d.remkl = 2.0*intime*((skill+1 - 2*Rand())*skill*0.1+.15); /* d.remkl and inkling includes commanders and SC */
 	inkling = d.remkl;
 	incom = skill + 0.0625*inkling*Rand();
 	d.remcom= min(10, incom);
@@ -502,10 +502,10 @@ int choose(void) {
 #ifdef CAPTURE
 	brigcapacity = 400;
     brigfree = brigcapacity;
-    kcaptured = 0; // TAA fix 6/2015
+    kcaptured = 0; /* TAA fix 6/2015 */
 #endif
 #ifdef CLOAKING
-    ncviol = 0; // TAA fix 6/2015
+    ncviol = 0; /* TAA fix 6/2015 */
     iscloaked = FALSE;
     iscloaking = FALSE;
 #endif
@@ -552,14 +552,14 @@ void newqad(int shutup) {
     isviolreported = FALSE;
 #endif
 	if (iscate) {
-		// Attempt to escape Super-commander, so tbeam back!
+		/* Attempt to escape Super-commander, so tbeam back! */
 		iscate = 0;
 		ientesc = 1;
 	}
-	// Clear quadrant
+	/* Clear quadrant */
 	for (i=1; i <= 10; i++)
 		for (j=1; j <= 10; j++) quad[i][j] = IHDOT;
-	// cope with supernova
+	/* cope with supernova */
 	if (quadnum > 999) {
 		return;
 	}
@@ -568,10 +568,10 @@ void newqad(int shutup) {
 	nplan = newnum%10;
 	nenhere = klhere + irhere;
 
-	// Position Starship
+	/* Position Starship */
 	quad[sectx][secty] = ship;
 
-	// Decide if quadrant needs a Tholian
+	/* Decide if quadrant needs a Tholian */
 	if ((skill <  SGOOD && Rand() <= 0.02) ||   /* Lighten up if skill is low */
 		(skill == SGOOD && Rand() <= 0.05) ||
 		(skill > SGOOD && Rand() <= 0.08)
@@ -593,7 +593,7 @@ void newqad(int shutup) {
 	}
 
 	if (quadnum >= 100) {
-		// Position ordinary Klingons
+		/* Position ordinary Klingons */
 		quadnum -= 100*klhere;
 		for (i = 1; i <= klhere; i++) {
 			dropin(IHK, &ix, &iy);
@@ -602,7 +602,7 @@ void newqad(int shutup) {
 			kdist[i] = kavgd[i] = sqrt(square(sectx-ix) + square(secty-iy));
 			kpower[i] = Rand()*150.0 +300.0 +25.0*skill;
 		}
-		// If we need a commander, promote a Klingon
+		/* If we need a commander, promote a Klingon */
 		for (i = 1; i <= d.remcom ; i++) 
 			if (d.cx[i]==quadx && d.cy[i]==quady) break;
 			
@@ -612,7 +612,7 @@ void newqad(int shutup) {
 			comhere = 1;
 		}
 
-		// If we need a super-commander, promote a Klingon
+		/* If we need a super-commander, promote a Klingon */
 		if (quadx == d.isx && quady == d.isy) {
 			quad[kx[1]][ky[1]] = IHS;
 			kpower[1] = 1175.0 + 400.0*Rand() + 125.0*skill;
@@ -620,7 +620,7 @@ void newqad(int shutup) {
 			ishere = 1;
 		}
 	}
-	// Put in Romulans if needed
+	/* Put in Romulans if needed */
 	for (i = klhere+1; i <= nenhere; i++) {
 		dropin(IHR, &ix, &iy);
 		kx[i] = ix;
@@ -629,14 +629,14 @@ void newqad(int shutup) {
 		kpower[i] = Rand()*400.0 + 450.0 + 50.0*skill;
 	}
 	sortkl();
-	// If quadrant needs a starbase, put it in
+	/* If quadrant needs a starbase, put it in */
 	if (quadnum >= 10) {
 		quadnum -= 10;
 		dropin(IHB, &basex, &basey);
 	}
 	
 	if (nplan) {
-		// If quadrant needs a planet, put it in
+		/* If quadrant needs a planet, put it in */
 		for (i=1; i <= inplan; i++)
 			if (d.plnets[i].x == quadx && d.plnets[i].y == quady) break;
 		if (i <= inplan) {
@@ -644,12 +644,12 @@ void newqad(int shutup) {
 			dropin(IHP, &plnetx, &plnety);
 		}
 	}
-	// Check for condition
+	/* Check for condition */
 	newcnd();
-	// And finally the stars
+	/* And finally the stars */
 	for (i = 1; i <= quadnum; i++) dropin(IHSTAR, &ix, &iy);
 
-	// Check for RNZ
+	/* Check for RNZ */
 	if (irhere > 0 && klhere == 0 && basex == 0) {
 		neutz = 1;
 		if (REPORTS) { 
@@ -663,10 +663,10 @@ void newqad(int shutup) {
 	}
 
 	if (shutup==0) {
-		// Put in THING if needed
+		/* Put in THING if needed */
 		if (thingx == quadx && thingy == quady) {
 			dropin(IHQUEST, &ix, &iy);
-			thingx = thingy = 0; // Transient
+			thingx = thingy = 0; /* Transient */
 			if (damage[DSRSENS] == 0.0) {
 				skip(1);
 				prout("MR. SPOCK- \"Captain, this is most unusual.");
@@ -675,11 +675,11 @@ void newqad(int shutup) {
 		}
 	}
 
-	// Put in a few black holes
+	/* Put in a few black holes */
 	for (i = 1; i <= 3; i++)
 		if (Rand() > 0.5) dropin(IHBLANK, &ix, &iy);
 
-	// Take out X's in corners if Tholian present
+	/* Take out X's in corners if Tholian present */
 	if (ithere) {
 		if (quad[1][1]=='X') quad[1][1] = IHDOT;
 		if (quad[1][10]=='X') quad[1][10] = IHDOT;
@@ -692,7 +692,7 @@ void sortkl(void) {
 	double t;
 	int sw, j, k;
 
-	// The author liked bubble sort. So we will use it. :-(
+	/* The author liked bubble sort. So we will use it. :-( */
 
 	if (nenhere < 2) return;
 

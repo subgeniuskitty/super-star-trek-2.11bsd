@@ -141,10 +141,10 @@ void lrscan(void) {
 				printf("   -1");
 			else {
 				printf("%5d", d.galaxy[x][y]);
-				// If radio works, mark star chart so
-				// it will show current information.
-				// Otherwise mark with current
-				// value which is fixed. 
+				/* If radio works, mark star chart so */
+				/* it will show current information. */
+				/* Otherwise mark with current */
+				/* value which is fixed.  */
 				starch[x][y] = damage[DRADIO] > 0 ? d.galaxy[x][y]+1000 :1;
 			}
 		}
@@ -157,10 +157,10 @@ void lrscan(void) {
 				printf("   -1");
 			else {
 				printf("%5d", d.galaxy[x][y]);
-				// If radio works, mark star chart so
-				// it will show current information.
-				// Otherwise mark with current
-				// value which is fixed. 
+				/* If radio works, mark star chart so */
+				/* it will show current information. */
+				/* Otherwise mark with current */
+				/* value which is fixed.  */
 				starch[x][y] = damage[DRADIO] > 0 ? d.galaxy[x][y]+1000 :1;
 			}
 		}
@@ -182,7 +182,7 @@ void dreprt(void) {
 				jdam = TRUE;
 			}
 			printf("  %16s ", device[i]);
-			if (i == DDRAY) { // Deathray is special case
+			if (i == DDRAY) { /* Deathray is special case */
 				proutn("           ");
 				cramf(damage[i]+0.005, 8, 2);
 			} else {
@@ -230,14 +230,14 @@ void chart(int nn) {
 	for (j = 8; j >= 1; j--) {
 		printf("%d -", j);
 		for (i = 1; i <= 8; i++) {
-			if (starch[i][j] < 0) // We know only about the bases
+			if (starch[i][j] < 0) /* We know only about the bases */
 				printf("  .1.");
-			else if (starch[i][j] == 0) // Unknown
+			else if (starch[i][j] == 0) /* Unknown */
 				printf("  ...");
-			else if (starch[i][j] > 999) // Memorized value
+			else if (starch[i][j] > 999) /* Memorized value */
 				printf("%5d", starch[i][j]-1000);
 			else
-				printf("%5d", d.galaxy[i][j]); // What is actually there (happens when value is 1)
+				printf("%5d", d.galaxy[i][j]); /* What is actually there (happens when value is 1) */
 		}
 		prout("  -");
 	}
@@ -245,14 +245,14 @@ void chart(int nn) {
 	for (i = 1; i <= 8; i++) {
 		printf("%d -", i);
 		for (j = 1; j <= 8; j++) {
-			if (starch[i][j] < 0) // We know only about the bases
+			if (starch[i][j] < 0) /* We know only about the bases */
 				printf("  .1.");
-			else if (starch[i][j] == 0) // Unknown
+			else if (starch[i][j] == 0) /* Unknown */
 				printf("  ...");
-			else if (starch[i][j] > 999) // Memorized value
+			else if (starch[i][j] > 999) /* Memorized value */
 				printf("%5d", starch[i][j]-1000);
 			else
-				printf("%5d", d.galaxy[i][j]); // What is actually there (happens when value is 1)
+				printf("%5d", d.galaxy[i][j]); /* What is actually there (happens when value is 1) */
 		}
 		prout("  -");
 	}
@@ -273,7 +273,7 @@ void srscan(int l) {
 	int leftside=TRUE, rightside=TRUE, i, j, k=0, nn=FALSE;
 	int goodScan=TRUE;
 	switch (l) {
-		case 1: // SRSCAN
+		case 1: /* SRSCAN */
 			if (damage[DSRSENS] != 0) {
 				/* Allow base's sensors if docked */
 				if (condit != IHDOCKED) {
@@ -292,7 +292,7 @@ void srscan(int l) {
 			chew();
 			prout("\n    1 2 3 4 5 6 7 8 9 10");
 			break;
-		case 2: // REQUEST
+		case 2: /* REQUEST */
 			while (scan() == IHEOL)
 				printf("Information desired? ");
 			chew();
@@ -305,8 +305,8 @@ void srscan(int l) {
 					 "  energy, torpedoes, shields, klingons, time.");
 				return;
 			}
-			// no "break"
-		case 3: // STATUS
+			/* no "break" */
+		case 3: /* STATUS */
 			chew();
 			leftside = FALSE;
 			skip(1);
@@ -435,10 +435,10 @@ void eta(void) {
 		}
 		ix2 = aaitem + 0.5;
 	}
-	else {	// same quadrant
+	else {	/* same quadrant */
 		ix2 = ix1;
 		iy2 = iy1;
-		ix1 = quady;	// ya got me why x and y are reversed!
+		ix1 = quady;	/* ya got me why x and y are reversed! */
 		iy1 = quadx;
 	}
 
@@ -457,7 +457,7 @@ void eta(void) {
 		proutn("Time or arrival date? ");
 		if (scan()==IHREAL) {
 			ttime = aaitem;
-			if (ttime > d.date) ttime -= d.date; // Actually a star date
+			if (ttime > d.date) ttime -= d.date; /* Actually a star date */
 			if (ttime <= 1e-10 ||
 				(twarp=(floor(sqrt((10.0*dist)/ttime)*10.0)+1.0)/10.0) > 10) {
 				prout("We'll never make it, sir.");
@@ -484,7 +484,7 @@ void eta(void) {
 		chew();
 		ttime = (10.0*dist)/square(twarp);
 		tpower = dist*twarp*twarp*twarp*(shldup+1);
-		if (tpower >= energy) { // Suggestion from Ethan Staffin -- give amount needed
+		if (tpower >= energy) { /* Suggestion from Ethan Staffin -- give amount needed */
 			prout("Insufficient energy, sir: we would need ");
 			cramf(tpower, 1, 1);
 			proutn (" units.");

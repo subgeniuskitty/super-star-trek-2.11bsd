@@ -70,7 +70,7 @@ void finish(FINTYPE ifin) {
 	skip(3);
 	printf("It is stardate %.1f .\n\n", d.date);
 	switch (ifin) {
-		case FWON: // Game has been won
+		case FWON: /* Game has been won */
 			if (d.nromrem != 0)
 				printf("The remaining %d Romulan ships surrender to Starfleet Command.\n",
 					   d.nromrem);
@@ -80,7 +80,7 @@ void finish(FINTYPE ifin) {
             prout("the Federation.");
 
 #ifdef CAPTURE
-            if (alive && brigcapacity-brigfree > 0) { // captured Klingon crew will get transfered to starbase
+            if (alive && brigcapacity-brigfree > 0) { /* captured Klingon crew will get transfered to starbase */
                 kcaptured += brigcapacity-brigfree;
                 printf("The %d captured Klingons are transferred to Star Fleet Command.\n",
                        brigcapacity-brigfree);
@@ -94,9 +94,9 @@ void finish(FINTYPE ifin) {
 						45.*nhelp+100.*d.basekl;
 				if (ship == IHF) badpt += 100.0;
 				else if (ship == 0) badpt += 200.0;
-				if (badpt < 100.0) badpt = 0.0;	// Close enough!
+				if (badpt < 100.0) badpt = 0.0;	/* Close enough! */
 				if (d.date-indate < 5.0 ||
-					// killsPerDate >= RateMax
+					/* killsPerDate >= RateMax */
 					(d.killk+d.killc+d.nsckill)/(d.date-indate) >=
 					0.1*skill*(skill+1.0) + 0.1 + 0.008*badpt) {
 					skip(1);
@@ -148,14 +148,14 @@ void finish(FINTYPE ifin) {
 						}
 					}
 				}
-				// Only grant long life if alive (original didn't!)
+				/* Only grant long life if alive (original didn't!) */
 				skip(1);
 				prout("LIVE LONG AND PROSPER.");
 			}
 			score(0);
 			if (igotit != 0) plaque();
 			return;
-		case FDEPLETE: // Federation Resources Depleted
+		case FDEPLETE: /* Federation Resources Depleted */
 			prout("Your time has run out and the Federation has been");
 			prout("conquered.  Your starship is now Klingon property,");
 			prout("and you are put on trial as a war criminal.  On the");
@@ -247,7 +247,7 @@ void finish(FINTYPE ifin) {
 			break;
 		case FSSC:
 			prout("The Galileo is instantly annihilated by the supernova.");
-			// no break;
+			/* no break; */
 		case FPNOVA:
 			prout("You and your mining party are atomized.");
 			skip(1);
@@ -330,7 +330,7 @@ void finish(FINTYPE ifin) {
 void score(int inGame) {
 	double timused = d.date - indate;
     int ithperd, iwon, klship;
-    int dnromrem = d.nromrem; // Leave global value alone
+    int dnromrem = d.nromrem; /* Leave global value alone */
 
     if (!inGame) pause(0);
 
@@ -343,7 +343,7 @@ void score(int inGame) {
 	if (ship == IHE) klship = 0;
 	else if (ship == IHF) klship = 1;
 	else klship = 2;
-	if (gamewon == 0 || inGame) dnromrem = 0; // None captured if no win or if still in the game
+	if (gamewon == 0 || inGame) dnromrem = 0; /* None captured if no win or if still in the game */
 	iscore = 10*d.killk + 50*d.killc + ithperd + iwon
 			 - 100*d.basekl - 100*klship - 45*nhelp -5*d.starkl - casual
 		 + 20*d.nromkl + 200*d.nsckill - 10*d.nplankl + dnromrem;

@@ -1,4 +1,4 @@
-#define INCLUDED	// Define externs here
+#define INCLUDED	/* Define externs here */
 #include "sst.h"
 #include <ctype.h>
 #ifdef MSDOS
@@ -49,8 +49,8 @@ static void clearscreen(void);
 
    */
 
-// I don't like the way this is done, relying on an index. But I don't
-// want to invest the time to make this nice and table driven.
+/* I don't like the way this is done, relying on an index. But I don't */
+/* want to invest the time to make this nice and table driven. */
 
 static char *commands[] = {
 	"srscan",
@@ -172,8 +172,8 @@ static void helpme(void) {
 	skip(1);
 
 	do {
-		if (linebuf[0]!=12) { // ignore page break lines 
-			linebuf[strlen(linebuf)-1] = '\0'; // No \n at end
+		if (linebuf[0]!=12) { /* ignore page break lines  */
+			linebuf[strlen(linebuf)-1] = '\0'; /* No \n at end */
 			prout(linebuf);
 		}
 		fgets(linebuf,132,fp);
@@ -194,7 +194,7 @@ static void makemoves(void) {
             skip(1);
             proutn("COMMAND> ");
             if (scan() == IHEOL) continue;
-            for (i = 0; i < 29; i++) // Abbreviations allowed for the first 29 commands, only.
+            for (i = 0; i < 29; i++) /* Abbreviations allowed for the first 29 commands, only. */
                 if (isit(commands[i]))
                     break;
             if (i < 29) {
@@ -208,16 +208,16 @@ static void makemoves(void) {
             }
             if (matched
 #ifndef CLOAKING
-                    && i != 26 // ignore the CLOAK command
+                    && i != 26 /* ignore the CLOAK command */
 #endif
 #ifndef CAPTURE
-                    && i != 27 // ignore the CAPTURE command
+                    && i != 27 /* ignore the CAPTURE command */
 #endif
 #ifndef SCORE
-                    && i != 28 // ignore the SCORE command
+                    && i != 28 /* ignore the SCORE command */
 #endif
 #ifndef DEBUG
-                    && i != 33 // ignore the DEBUG command
+                    && i != 33 /* ignore the DEBUG command */
 #endif
                     ) break;
 
@@ -227,13 +227,13 @@ static void makemoves(void) {
             } else prout("UNRECOGNIZED COMMAND.");
         }
         switch (i) { /* command switch */
-            case 0: // srscan
+            case 0: /* srscan */
                 srscan(1);
                 break;
-            case 1: // lrscan
+            case 1: /* lrscan */
                 lrscan();
                 break;
-            case 2: // phasers
+            case 2: /* phasers */
                 phasers();
                 if (ididit) {
 #ifdef CLOAKING
@@ -246,7 +246,7 @@ static void makemoves(void) {
                     hitme = TRUE;
                 }
                 break;
-            case 3: // photons
+            case 3: /* photons */
                 photon();
                 if (ididit) {
 #ifdef CLOAKING
@@ -259,147 +259,147 @@ static void makemoves(void) {
                     hitme = TRUE;
                 }
                 break;
-            case 4: // move
+            case 4: /* move */
                 warp(1);
                 break;
-            case 5: // shields
+            case 5: /* shields */
                 sheild(1);
                 if (ididit) {
                     attack(2);
                     shldchg = 0;
                 }
                 break;
-            case 6: // dock
+            case 6: /* dock */
                 dock();
                 break;
-            case 7: // damages
+            case 7: /* damages */
                 dreprt();
                 break;
-            case 8: // chart
+            case 8: /* chart */
                 chart(0);
                 break;
-            case 9: // impulse
+            case 9: /* impulse */
                 impuls();
                 break;
-            case 10: // rest
+            case 10: /* rest */
                 waiting();
                 if (ididit) hitme = TRUE;
                 break;
-            case 11: // warp
+            case 11: /* warp */
                 setwrp();
                 break;
-            case 12: // status
+            case 12: /* status */
                 srscan(3);
                 break;
-            case 13: // sensors
+            case 13: /* sensors */
                 sensor();
                 break;
-            case 14: // orbit
+            case 14: /* orbit */
                 orbit();
                 if (ididit) hitme = TRUE;
                 break;
-            case 15: // transport "beam"
+            case 15: /* transport "beam" */
                 beam();
                 break;
-            case 16: // mine
+            case 16: /* mine */
                 mine();
                 if (ididit) hitme = TRUE;
                 break;
-            case 17: // crystals
+            case 17: /* crystals */
                 usecrystals();
                 break;
-            case 18: // shuttle
+            case 18: /* shuttle */
                 shuttle();
                 if (ididit) hitme = TRUE;
                 break;
-            case 19: // Planet list
+            case 19: /* Planet list */
                 preport();
                 break;
-            case 20: // Status information
+            case 20: /* Status information */
                 srscan(2);
                 break;
-            case 21: // Game Report 
+            case 21: /* Game Report  */
                 report(0);
                 break;
-            case 22: // use COMPUTER!
+            case 22: /* use COMPUTER! */
                 eta();
                 break;
             case 23:
                 listCommands(TRUE);
                 break;
-            case 24: // Emergency exit
-                clearscreen(); // Hide screen
-                freeze(TRUE); // forced save
-                exit(1); // And quick exit
+            case 24: /* Emergency exit */
+                clearscreen(); /* Hide screen */
+                freeze(TRUE); /* forced save */
+                exit(1); /* And quick exit */
                 break;
             case 25:
-                probe(); // Launch probe
+                probe(); /* Launch probe */
                 break;
 #ifdef CLOAKING
             case 26:
-                cloak(); // turn on/off cloaking
+                cloak(); /* turn on/off cloaking */
                 if (iscloaking) {
-                    attack(2); // We will be seen while we cloak
+                    attack(2); /* We will be seen while we cloak */
                     iscloaking = FALSE;
-                    if (damage[DCLOAK] == 0) // don't cloak if we got damaged while cloaking!
+                    if (damage[DCLOAK] == 0) /* don't cloak if we got damaged while cloaking! */
                         iscloaked = TRUE;
                 }
                 break;
 #endif
 #ifdef CAPTURE
             case 27:
-                capture(); // Attempt to get Klingon ship to surrender
+                capture(); /* Attempt to get Klingon ship to surrender */
                 if (ididit) hitme = TRUE;
                 break;
 #endif
 #ifdef SCORE
             case 28:
-                score(1); // get the score
+                score(1); /* get the score */
                 break;
 #endif
-            case 29: // Abandon Ship
+            case 29: /* Abandon Ship */
                 abandn();
                 break;
-            case 30: // Self Destruct
+            case 30: /* Self Destruct */
                 dstrct();
                 break;
-            case 31: // Save Game
+            case 31: /* Save Game */
                 freeze(FALSE);
                 if (skill > SGOOD)
                     prout("WARNING--Frozen games produce no plaques!");
                 break;
-            case 32: // Try a desparation measure
+            case 32: /* Try a desparation measure */
                 deathray();
                 if (ididit) hitme = TRUE;
                 break;
 #ifdef DEBUG
-            case 33: // What do we want for debug???
+            case 33: /* What do we want for debug??? */
                 debugme();
                 break;
 #endif
-            case 34: // Call for help
+            case 34: /* Call for help */
                 help();
                 break;
             case 35:
-                alldone = 1; // quit the game
+                alldone = 1; /* quit the game */
 #ifdef DEBUG
                 if (idebug) score(0);
 #endif
                 break;
             case 36:
-                helpme(); // get help
+                helpme(); /* get help */
                 break;
         }
         for (;;) {
-            if (alldone) break; // Game has ended
+            if (alldone) break; /* Game has ended */
 #ifdef DEBUG
             if (idebug) prout("2500");
 #endif
             if (Time != 0.0) {
                 events();
-                if (alldone) break; // Events did us in
+                if (alldone) break; /* Events did us in */
             }
-            if (d.galaxy[quadx][quady] == 1000) { // Galaxy went Nova!
+            if (d.galaxy[quadx][quady] == 1000) { /* Galaxy went Nova! */
                 atover(0);
                 continue;
             }
@@ -407,7 +407,7 @@ static void makemoves(void) {
             if (hitme && justin == 0) {
                 attack(2);
                 if (alldone) break;
-                if (d.galaxy[quadx][quady] == 1000) { // went NOVA! 
+                if (d.galaxy[quadx][quady] == 1000) { /* went NOVA!  */
                     atover(0);
                     hitme = TRUE;
                     continue;
@@ -423,7 +423,7 @@ static void makemoves(void) {
 int main(int argc, char **argv) {
 	prelim();
 
-	if (argc > 1) { // look for -f option
+	if (argc > 1) { /* look for -f option */
 		if (strcmp(argv[1], "-f")== 0) {
 			coordfixed = 1;
 			argc--;
@@ -558,44 +558,44 @@ int scan(void) {
 
 	linecount = 0;
 
-	// Init result
+	/* Init result */
 	aaitem = 0.0;
 	*citem = 0;
 
-	// Read a line if nothing here
+	/* Read a line if nothing here */
 	if (*linep == 0) {
 		if (linep != line) {
 			chew();
 			return IHEOL;
 		}
-//		gets(line);
-		// We should really be using fgets
+/*		gets(line); */
+		/* We should really be using fgets */
 		fgets(line,sizeof(line),stdin);
 		if (line[strlen(line)-1] == '\n')
 			line[strlen(line)-1] = '\0';
 		linep = line;
 	}
-	// Skip leading white space
+	/* Skip leading white space */
 	while (*linep == ' ') linep++;
-	// Nothing left
+	/* Nothing left */
 	if (*linep == 0) {
 		chew();
 		return IHEOL;
 	}
 	if (isdigit(*linep) || *linep=='+' || *linep=='-' || *linep=='.') {
-		// treat as a number
+		/* treat as a number */
 	    if (sscanf(linep, "%lf%n", &aaitem, &i) < 1) {
-		linep = line; // Invalid numbers are ignored
+		linep = line; /* Invalid numbers are ignored */
 		*linep = 0;
 		return IHEOL;
 	    }
 	    else {
-		// skip to end
+		/* skip to end */
 		linep += i;
 		return IHREAL;
 	    }
 	}
-	// Treat as alpha
+	/* Treat as alpha */
 	cp = citem;
 	while (*linep && *linep!=' ') {
 		if ((cp - citem) < 9) *cp++ = tolower(*linep);

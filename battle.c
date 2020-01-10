@@ -60,7 +60,7 @@ void cloak(void) {
             isviolreported = TRUE;
         }
             
-//        if (neutz && d.date >= ALGERON) finish(FCLOAK);
+/*        if (neutz && d.date >= ALGERON) finish(FCLOAK); */
 		return;
 	}
 
@@ -250,7 +250,7 @@ void ram(int ibumpd, int ienm, int ix, int iy) {
 	prout(" casualties.");
 	casual += icas;
 	for (l=1; l <= ndevice; l++) {
-		if (l == DDRAY) continue; // Don't damage deathray 
+		if (l == DDRAY) continue; /* Don't damage deathray  */
 		if (damage[l] < 0) continue;
 		extradm = (10.0*type*Rand()+1.0)*damfac;
 		damage[l] += Time + extradm; /* Damage for at least time of travel! */
@@ -546,7 +546,7 @@ void attack(int k) {
 	double pfac, dustfac, hitmax=0.0, hittot=0.0, chgfac=1.0, r;
 
 #ifdef CLOAKING
-    if (iscloaked && !iscloaking) return; // Nothing happens if we are cloaked
+    if (iscloaked && !iscloaking) return; /* Nothing happens if we are cloaked */
 #endif
     
 	iattak = 1;
@@ -986,7 +986,7 @@ static int checkshctrl(double rpow) {
 		proutn("  ");
 		crami(icas, 1);
 		prout(" casualties so far.\"");
-		casual += icas; // Changed from -=, October 2013
+		casual += icas; /* Changed from -=, October 2013 */
 	}
 	skip(1);
 	prout("Phaser energy dispersed by shields.");
@@ -1268,7 +1268,7 @@ void phasers(void) {
 			hittem(hits);
 			ididit=1;
 			break;
-			case NOTSET: break; // cannot occur
+			case NOTSET: break; /* cannot occur */
 	}
 	/* Say shield raised or malfunction, if necessary */
 	if (alldone) return;
@@ -1390,7 +1390,7 @@ void
 	int k;
 	double	x;
 
-	ididit = FALSE; // Nothing if we fail
+	ididit = FALSE; /* Nothing if we fail */
 	Time = 0.0;
 
 	/* Make sure there is room in the brig */
@@ -1421,20 +1421,21 @@ void
 
 	/* if there is more than one Klingon, find out which one */
 	k = selectklingon();
-	Time = 0.05;   // This action will take some time
-	ididit = TRUE; //  So any others can strike back
+	Time = 0.05;   /* This action will take some time */
+	ididit = TRUE; /*  So any others can strike back */
 
     /* check out that Klingon */
     /* The algorithm isn't that great and could use some more
      * intelligent design */
-//	x = 300 + 25*skill;
+/*	x = 300 + 25*skill; */
 	x = energy;
 	x /= kpower[k] * nenhere;
 	x *= 2.5;  /* would originally have been equivalent of 1.4, but we want command to work more often, more humanely */
 	i = x;
 #ifdef DEBUG
 	printf("Prob = %d (%.4f)\n", i, x);
-//	i = 100; // For testing, of course!
+/* For testing, of course! */
+/*	i = 100;  */
 #endif
 	if (i > 100*Rand())
 	{
@@ -1481,12 +1482,12 @@ int selectklingon()
 	if (nenhere < 2)
 		i = 1;
 	else
-	{	// Select the weakest one
+	{	/* Select the weakest one */
 		double pow  = 1e6;
 		int j;
 		for (j=1; j <= nenhere; j++)
 		{
-			if (quad[kx[j]][ky[j]] == IHR) continue; // No Romulans surrender
+			if (quad[kx[j]][ky[j]] == IHR) continue; /* No Romulans surrender */
 			if (kpower[j]< pow)
 			{
 				pow = kpower[j];

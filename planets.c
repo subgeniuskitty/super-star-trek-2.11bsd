@@ -7,7 +7,7 @@ static int consumeTime(void) {
 /* I think most of this avoidance was caused by overlay scheme.
    Let's see what happens if all events can occur here */
 
-//	double asave;
+/*	double asave; */
 	ididit = 1;
 #if 0
 	/* Don't wory about this */
@@ -16,10 +16,11 @@ static int consumeTime(void) {
 		return 1;
 	}
 #endif
-//	asave = future[FSNOVA];
-//	future[FSNOVA] = 1e30; /* defer supernovas */
+/*	asave = future[FSNOVA]; */
+/* defer supernovas */
+/*	future[FSNOVA] = 1e30; */
 	events();	/* Used to avoid if future[FSCMOVE] within time */
-//	future[FSNOVA] = asave;
+/*	future[FSNOVA] = asave; */
 	/*fails if game over, quadrant super-novas or we've moved to new quadrant*/
 	if (alldone || d.galaxy[quadx][quady] == 1000 || justin != 0) return 1;
 	return 0;
@@ -450,7 +451,7 @@ void deathray(void) {
 		}
 		return;
 	}
-	r = Rand();	// Pick failure method 
+	r = Rand();	/* Pick failure method  */
 	if (r <= .30) {
 		prouts("Sulu- \"Captain!  It's working!\"");
 		skip(1);

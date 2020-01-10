@@ -333,7 +333,7 @@ void events(void) {
 					probecy = j;
 					if (i < 1 || i > 8 || j < 1 || j > 8 ||
 					    d.galaxy[probecx][probecy] == 1000) {
-						// Left galaxy or ran into supernova
+						/* Left galaxy or ran into supernova */
 						if (REPORTS) {
 							if (ipage==0) pause(1);
 							ipage = 1;
@@ -362,7 +362,7 @@ void events(void) {
 				if (REPORTS) 
 					starch[probecx][probecy] = damage[DRADIO] > 0.0 ?
 						d.galaxy[probecx][probecy]+1000 : 1;
-				proben--; // One less to travel
+				proben--; /* One less to travel */
 				if (proben == 0 && isarmed &&
 				    d.galaxy[probecx][probecy] % 10 > 0) {
 					/* lets blow the sucker! */
@@ -422,7 +422,7 @@ void waiting(void) {
 		ididit = 1;
 		if (alldone) return;
 		delay -= temp;
-	} while (d.galaxy[quadx][quady] != 1000); // leave if quadrant supernovas
+	} while (d.galaxy[quadx][quady] != 1000); /* leave if quadrant supernovas */
 
 	resting = 0;
 	Time = 0;
@@ -462,11 +462,12 @@ void nova(int ix, int iy) {
 					if (ii < 1 || ii > 10 || jj < 1 || jj > 10) continue;
 					iquad = quad[ii][jj];
 					switch (iquad) {
-						//					case IHDOT:	/* Empty space ends reaction
-						//					case IHQUEST:
-						//					case IHBLANK:
-						//					case IHT:
-						//					case IHWEB:
+						/* Empty space ends reaction */
+						/*					case IHDOT:	 */
+						/*					case IHQUEST: */
+						/*					case IHBLANK: */
+						/*					case IHT: */
+						/*					case IHWEB: */
 						default:
 							break;
 						case IHSTAR: /* Affect another star */
@@ -700,7 +701,7 @@ void snova(int insx, int insy) {
 	/* destroy any Klingons in supernovaed quadrant */
 	num=d.galaxy[nqx][nqy];
 	kldead = num/100;
-	d.remkl -= kldead; // Moved here to correctly set remaining Klingon count
+	d.remkl -= kldead; /* Moved here to correctly set remaining Klingon count */
 	comdead = iscdead = 0;
 	if (nqx==d.isx && nqy == d.isy) {
 		/* did in the Supercommander! */
