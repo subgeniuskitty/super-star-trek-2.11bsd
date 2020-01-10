@@ -54,7 +54,7 @@ EXTERN struct foo {
 		nplankl;		/* destroyed planets */
 	PLANETS plnets[PLNETMAX+1];  /* Planet information */
 #ifdef CAPTURE
-    int kcaptured, brigfree;
+    int f1_kcaptured, f1_brigfree;
 #endif
 	double date,		/* stardate */
 		remres,			/* remaining resources */
@@ -72,203 +72,203 @@ EXTERN char
  */
 
 EXTERN struct foo2 {
-	int inkling,
-	inbase,
-	incom,
-	instar,
-	intorps,
-	condit,
-	torps,
-	ship,
-	quadx,
-	quady,
-	sectx,
-	secty,
-	length,
-	skill,
-	basex,
-	basey,
-	klhere,
-	comhere,
-	casual,
-	nhelp,
-	nkinks,
-	ididit,
-	gamewon,
-	alive,
-	justin,
-	alldone,
-	shldchg,
-	thingx,
-	thingy,
-	plnetx,
-	plnety,
-	inorbit,
-	landed,
-	iplnet,
-	imine,
-	inplan,
-	nenhere,
-	ishere,
-	neutz,
-	irhere,
-	icraft,
-	ientesc,
-	iscraft,
-	isatb,
-	iscate,
+	int f2_inkling,
+	f2_inbase,
+	f2_incom,
+	f2_instar,
+	f2_intorps,
+	f2_condit,
+	f2_torps,
+	f2_ship,
+	f2_quadx,
+	f2_quady,
+	f2_sectx,
+	f2_secty,
+	f2_length,
+	f2_skill,
+	f2_basex,
+	f2_basey,
+	f2_klhere,
+	f2_comhere,
+	f2_casual,
+	f2_nhelp,
+	f2_nkinks,
+	f2_ididit,
+	f2_gamewon,
+	f2_alive,
+	f2_justin,
+	f2_alldone,
+	f2_shldchg,
+	f2_thingx,
+	f2_thingy,
+	f2_plnetx,
+	f2_plnety,
+	f2_inorbit,
+	f2_landed,
+	f2_iplnet,
+	f2_imine,
+	f2_inplan,
+	f2_nenhere,
+	f2_ishere,
+	f2_neutz,
+	f2_irhere,
+	f2_icraft,
+	f2_ientesc,
+	f2_iscraft,
+	f2_isatb,
+	f2_iscate,
 #ifdef DEBUG
-	idebug,
+	f2_idebug,
 #endif
 #ifdef CLOAKING
-    iscloaked,
-    iscloaking,
-    ncviol,
-    isviolreported,
+    f2_iscloaked,
+    f2_iscloaking,
+    f2_ncviol,
+    f2_isviolreported,
 #endif
 #ifdef CAPTURE
-    brigcapacity,
+    f2_brigcapacity,
 #endif
-	iattak,
-	icrystl,
-	tourn,
-	thawed,
-	batx,
-	baty,
-	ithere,
-	ithx,
-	ithy,
-	iseenit,
-	probecx,
-	probecy,
-	proben,
-	isarmed,
-	nprobes;
+	f2_iattak,
+	f2_icrystl,
+	f2_tourn,
+	f2_thawed,
+	f2_batx,
+	f2_baty,
+	f2_ithere,
+	f2_ithx,
+	f2_ithy,
+	f2_iseenit,
+	f2_probecx,
+	f2_probecy,
+	f2_proben,
+	f2_isarmed,
+	f2_nprobes;
 
-	double inresor,
-	intime,
-	inenrg,
-	inshld,
-	inlsr,
-	indate,
-	energy,
-	shield,
-	shldup,
-	warpfac,
-	wfacsq,
-	lsupres,
-	dist,
-	direc,
-	Time,
-	docfac,
-	resting,
-	damfac,
-	stdamtim,
-	cryprob,
-	probex,
-	probey,
-	probeinx,
-	probeiny;
+	double f2_inresor,
+	f2_intime,
+	f2_inenrg,
+	f2_inshld,
+	f2_inlsr,
+	f2_indate,
+	f2_energy,
+	f2_shield,
+	f2_shldup,
+	f2_warpfac,
+	f2_wfacsq,
+	f2_lsupres,
+	f2_dist,
+	f2_direc,
+	f2_Time,
+	f2_docfac,
+	f2_resting,
+	f2_damfac,
+	f2_stdamtim,
+	f2_cryprob,
+	f2_probex,
+	f2_probey,
+	f2_probeinx,
+	f2_probeiny;
 } a;
 
-#define inkling a.inkling		/* Initial number of klingons */
-#define inbase a.inbase			/* Initial number of bases */
-#define incom a.incom			/* Initian number of commanders */
-#define instar a.instar			/* Initial stars */
-#define intorps a.intorps		/* Initial/Max torpedoes */
-#define condit a.condit			/* Condition (red, yellow, green docked) */
-#define torps a.torps			/* number of torpedoes */
-#define ship a.ship				/* Ship type -- 'E' is Enterprise */
-#define quadx a.quadx			/* where we are */
-#define quady a.quady
-#define sectx a.sectx			/* where we are */
-#define secty a.secty
-#define length a.length			/* length of game */
-#define skill a.skill			/* skill level */
-#define basex a.basex			/* position of base in current quad */
-#define basey a.basey
-#define klhere a.klhere			/* klingons here */
-#define comhere a.comhere		/* commanders here */
-#define casual a.casual			/* causalties */
-#define nhelp a.nhelp			/* calls for help */
-#define nkinks a.nkinks
-#define ididit a.ididit			/* Action taken -- allows enemy to attack */
-#define gamewon a.gamewon		/* Finished! */
-#define alive a.alive			/* We are alive (not killed) */
-#define justin a.justin			/* just entered quadrant */
-#define alldone a.alldone		/* game is now finished */
-#define shldchg a.shldchg		/* shield is changing (affects efficiency) */
-#define thingx a.thingx			/* location of strange object in galaxy */
-#define thingy a.thingy
-#define plnetx a.plnetx			/* location of planet in quadrant */
-#define plnety a.plnety
-#define inorbit a.inorbit		/* orbiting */
-#define landed a.landed			/* party on planet (1), on ship (-1) */
-#define iplnet a.iplnet			/* planet # in quadrant */
-#define imine a.imine			/* mining */
-#define inplan a.inplan			/* initial planets */
-#define nenhere a.nenhere		/* Number of enemies in quadrant */
-#define ishere a.ishere			/* Super-commander in quandrant */
-#define neutz a.neutz			/* Romulan Neutral Zone */
-#define irhere a.irhere			/* Romulans in quadrant */
-#define icraft a.icraft			/* Kirk in Galileo */
-#define ientesc a.ientesc		/* Attempted escape from supercommander */
-#define iscraft a.iscraft		/* =1 if craft on ship, -1 if removed from game */
-#define isatb a.isatb			/* =1 if SuperCommander is attacking base */
-#define iscate a.iscate			/* Super Commander is here */
+#define inkling a.f2_inkling		/* Initial number of klingons */
+#define inbase a.f2_inbase			/* Initial number of bases */
+#define incom a.f2_incom			/* Initian number of commanders */
+#define instar a.f2_instar			/* Initial stars */
+#define intorps a.f2_intorps		/* Initial/Max torpedoes */
+#define condit a.f2_condit			/* Condition (red, yellow, green docked) */
+#define torps a.f2_torps			/* number of torpedoes */
+#define ship a.f2_ship				/* Ship type -- 'E' is Enterprise */
+#define quadx a.f2_quadx			/* where we are */
+#define quady a.f2_quady
+#define sectx a.f2_sectx			/* where we are */
+#define secty a.f2_secty
+#define length a.f2_length			/* length of game */
+#define skill a.f2_skill			/* skill level */
+#define basex a.f2_basex			/* position of base in current quad */
+#define basey a.f2_basey
+#define klhere a.f2_klhere			/* klingons here */
+#define comhere a.f2_comhere		/* commanders here */
+#define casual a.f2_casual			/* causalties */
+#define nhelp a.f2_nhelp			/* calls for help */
+#define nkinks a.f2_nkinks
+#define ididit a.f2_ididit			/* Action taken -- allows enemy to attack */
+#define gamewon a.f2_gamewon		/* Finished! */
+#define alive a.f2_alive			/* We are alive (not killed) */
+#define justin a.f2_justin			/* just entered quadrant */
+#define alldone a.f2_alldone		/* game is now finished */
+#define shldchg a.f2_shldchg		/* shield is changing (affects efficiency) */
+#define thingx a.f2_thingx			/* location of strange object in galaxy */
+#define thingy a.f2_thingy
+#define plnetx a.f2_plnetx			/* location of planet in quadrant */
+#define plnety a.f2_plnety
+#define inorbit a.f2_inorbit		/* orbiting */
+#define landed a.f2_landed			/* party on planet (1), on ship (-1) */
+#define iplnet a.f2_iplnet			/* planet # in quadrant */
+#define imine a.f2_imine			/* mining */
+#define inplan a.f2_inplan			/* initial planets */
+#define nenhere a.f2_nenhere		/* Number of enemies in quadrant */
+#define ishere a.f2_ishere			/* Super-commander in quandrant */
+#define neutz a.f2_neutz			/* Romulan Neutral Zone */
+#define irhere a.f2_irhere			/* Romulans in quadrant */
+#define icraft a.f2_icraft			/* Kirk in Galileo */
+#define ientesc a.f2_ientesc		/* Attempted escape from supercommander */
+#define iscraft a.f2_iscraft		/* =1 if craft on ship, -1 if removed from game */
+#define isatb a.f2_isatb			/* =1 if SuperCommander is attacking base */
+#define iscate a.f2_iscate			/* Super Commander is here */
 #ifdef DEBUG
-#define idebug a.idebug			/* Debug mode */
+#define idebug a.f2_idebug			/* Debug mode */
 #endif
 #ifdef CLOAKING
-#define iscloaked a.iscloaked  /* Cloaking is enabled */
-#define iscloaking a.iscloaking /* However if iscloaking is TRUE then in process of cloaking and can be attacked */
-#define ncviol a.ncviol		/* Treaty violations */
-#define isviolreported a.isviolreported /* Violation reported by Romulan in quadrant */
+#define iscloaked a.f2_iscloaked  /* Cloaking is enabled */
+#define iscloaking a.f2_iscloaking /* However if iscloaking is TRUE then in process of cloaking and can be attacked */
+#define ncviol a.f2_ncviol		/* Treaty violations */
+#define isviolreported a.f2_isviolreported /* Violation reported by Romulan in quadrant */
 #endif
 #ifdef CAPTURE
-#define kcaptured d.kcaptured   /* number of captured Klingons                   */
-#define brigfree d.brigfree     /* room in the brig */
-#define brigcapacity a.brigcapacity        /* How many Klingons the brig will hold */
+#define kcaptured d.f1_kcaptured   /* number of captured Klingons                   */
+#define brigfree d.f1_brigfree     /* room in the brig */
+#define brigcapacity a.f2_brigcapacity        /* How many Klingons the brig will hold */
 #endif
-#define iattak a.iattak			/* attack recursion elimination (was cracks[4]) */
-#define icrystl a.icrystl		/* dilithium crystals aboard */
-#define tourn a.tourn			/* Tournament number */
-#define thawed a.thawed			/* Thawed game */
-#define batx a.batx				/* Base coordinates being attacked */
-#define baty a.baty
-#define ithere a.ithere			/* Tholean is here  */
-#define ithx a.ithx				/* coordinates of tholean */
-#define ithy a.ithy
-#define iseenit a.iseenit		/* Seen base attack report */
-#define inresor a.inresor		/* initial resources */
-#define intime a.intime			/* initial time */
-#define inenrg a.inenrg			/* Initial/Max Energy */
-#define inshld a.inshld			/* Initial/Max Shield */
-#define inlsr a.inlsr			/* initial life support resources */
-#define indate a.indate			/* Initial date */
-#define energy a.energy			/* Energy level */
-#define shield a.shield			/* Shield level */
-#define shldup a.shldup			/* Shields are up */
-#define warpfac a.warpfac		/* Warp speed */
-#define wfacsq a.wfacsq			/* squared warp factor */
-#define lsupres a.lsupres		/* life support reserves */
-#define dist a.dist				/* movement distance */
-#define direc a.direc			/* movement direction */
-#define Time a.Time				/* time taken by current operation */
-#define docfac a.docfac			/* repair factor when docking (constant?) */
-#define resting a.resting		/* rest time */
-#define damfac a.damfac			/* damage factor */
-#define stdamtim a.stdamtim		/* time that star chart was damaged */
-#define cryprob a.cryprob		/* probability that crystal will work */
-#define probex a.probex			/* location of probe */
-#define probey a.probey
-#define probecx a.probecx		/* current probe quadrant */
-#define probecy a.probecy	
-#define probeinx a.probeinx		/* Probe x,y increment */
-#define probeiny a.probeiny		
-#define proben a.proben			/* number of moves for probe */
-#define isarmed a.isarmed		/* Probe is armed */
-#define nprobes a.nprobes		/* number of probes available */
+#define iattak a.f2_iattak			/* attack recursion elimination (was cracks[4]) */
+#define icrystl a.f2_icrystl		/* dilithium crystals aboard */
+#define tourn a.f2_tourn			/* Tournament number */
+#define thawed a.f2_thawed			/* Thawed game */
+#define batx a.f2_batx				/* Base coordinates being attacked */
+#define baty a.f2_baty
+#define ithere a.f2_ithere			/* Tholean is here  */
+#define ithx a.f2_ithx				/* coordinates of tholean */
+#define ithy a.f2_ithy
+#define iseenit a.f2_iseenit		/* Seen base attack report */
+#define inresor a.f2_inresor		/* initial resources */
+#define intime a.f2_intime			/* initial time */
+#define inenrg a.f2_inenrg			/* Initial/Max Energy */
+#define inshld a.f2_inshld			/* Initial/Max Shield */
+#define inlsr a.f2_inlsr			/* initial life support resources */
+#define indate a.f2_indate			/* Initial date */
+#define energy a.f2_energy			/* Energy level */
+#define shield a.f2_shield			/* Shield level */
+#define shldup a.f2_shldup			/* Shields are up */
+#define warpfac a.f2_warpfac		/* Warp speed */
+#define wfacsq a.f2_wfacsq			/* squared warp factor */
+#define lsupres a.f2_lsupres		/* life support reserves */
+#define dist a.f2_dist				/* movement distance */
+#define direc a.f2_direc			/* movement direction */
+#define Time a.f2_Time				/* time taken by current operation */
+#define docfac a.f2_docfac			/* repair factor when docking (constant?) */
+#define resting a.f2_resting		/* rest time */
+#define damfac a.f2_damfac			/* damage factor */
+#define stdamtim a.f2_stdamtim		/* time that star chart was damaged */
+#define cryprob a.f2_cryprob		/* probability that crystal will work */
+#define probex a.f2_probex			/* location of probe */
+#define probey a.f2_probey
+#define probecx a.f2_probecx		/* current probe quadrant */
+#define probecy a.f2_probecy	
+#define probeinx a.f2_probeinx		/* Probe x,y increment */
+#define probeiny a.f2_probeiny		
+#define proben a.f2_proben			/* number of moves for probe */
+#define isarmed a.f2_isarmed		/* Probe is armed */
+#define nprobes a.f2_nprobes		/* number of probes available */
 
 EXTERN int
 		kx[21],			/* enemy sector locations */
