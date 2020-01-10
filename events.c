@@ -1,7 +1,9 @@
 #include "sst.h"
 #include <math.h>
 
-void events(void) {
+void
+events()
+{
 
 	int ictbeam=0, ipage=0, istract=0, line, i, j, k, l, ixhold, iyhold;
 	double fintim = d.date + Time, datemin, xtime, repair, yank;
@@ -376,7 +378,9 @@ void events(void) {
 }
 
 
-void waiting(void) {
+void
+waiting()
+{
 	int key;
 	double temp, delay, origTime;
 
@@ -428,7 +432,10 @@ void waiting(void) {
 	Time = 0;
 }
 
-void nova(int ix, int iy) {
+void
+nova(ix, iy)
+	int ix, iy;
+{
 	static double course[] =
 				{0.0, 10.5, 12.0, 1.5, 9.0, 0.0, 3.0, 7.5, 6.0, 4.5};
 	int bot, top, top2, hits[11][3], kount, icx, icy, mm, nn, j;
@@ -606,7 +613,10 @@ void nova(int ix, int iy) {
 }
 
 
-void snova(int insx, int insy) {
+void
+snova(insx, insy)
+	int insx, insy;
+{
 	int comdead, nqx, nqy, nsx, nsy, num, kldead, iscdead;
 	int nrmdead, npdead;
 	int insipient=0;
@@ -780,5 +790,3 @@ void snova(int insx, int insy) {
 	if (alldone) finish(FSNOVAED);
 	return;
 }
-
-

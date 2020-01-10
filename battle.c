@@ -1,7 +1,9 @@
-	#include "sst.h"
+#include "sst.h"
 
 #ifdef CLOAKING
-void cloak(void) {
+void
+cloak()
+{
 	int key;
 	enum {NONE, CLON, CLOFF} action = NONE;
 
@@ -92,7 +94,10 @@ void cloak(void) {
 }
 #endif
 
-void sheild(int i) {
+void
+sheild(i)
+	int i;
+{
 	int key;
 	enum {NONE, SHUP, SHDN, NRG} action = NONE;
 
@@ -220,7 +225,10 @@ void sheild(int i) {
 	}
 }
 
-void ram(int ibumpd, int ienm, int ix, int iy) {
+void
+ram(ibumpd, ienm, ix, iy)
+	int ibumpd, ienm, ix, iy;
+{
 	double type = 1.0, extradm;
 	int icas, l;
 	
@@ -264,7 +272,11 @@ void ram(int ibumpd, int ienm, int ix, int iy) {
 	return;
 }
 
-void torpedo(double course, double r, int inx, int iny, double *hit) {
+void
+torpedo(course, r, inx, iny, hit)
+	double course, r, *hit;
+	int inx, iny;
+{
 	int l, iquad, ix, iy,  jx, jy, shoved=0, ll;
 	double ac=course + 0.25*r;
 	double angle = (15.0-ac)*0.5235988;
@@ -493,7 +505,10 @@ void torpedo(double course, double r, int inx, int iny, double *hit) {
 	return;
 }
 
-static void fry(double hit) {
+static void
+fry(hit)
+	double hit;
+{
 	double ncrit, extradm;
 	int ktr=1, l, ll, j, cdam[6];
 
@@ -538,7 +553,10 @@ static void fry(double hit) {
 #endif
 }
 
-void attack(int k) {
+void
+attack(k)
+	int k;
+{
 	/* k == 0 forces use of phasers in an attack */
 	int percent, ihurt=0, l, i=0, jx, jy, iquad, itflag;
 	int atackd = 0, attempt = 0;
@@ -688,7 +706,10 @@ void attack(int k) {
 	return;
 }
 		
-void deadkl(int ix, int iy, int type, int ixx, int iyy) {
+void
+deadkl(ix, iy, type, ixx, iyy)
+	int ix, iy, type, ixx, iyy;
+{
 	/* Added ixx and iyy allow enemy to "move" before dying */
 
 	int i,j;
@@ -779,7 +800,10 @@ void deadkl(int ix, int iy, int type, int ixx, int iyy) {
 	return;
 }
 
-static int targetcheck(double x, double y, double *course) {
+static int
+targetcheck(x, y, course)
+	double x, y, *course;
+{
 	double deltx, delty;
 	/* Return TRUE if target is invalid */
 	if (x < 1.0 || x > 10.0 || y < 1.0 || y > 10.0) {
@@ -800,7 +824,9 @@ static int targetcheck(double x, double y, double *course) {
 	return 0;
 }
 
-void photon(void) {
+void
+photon()
+{
 	double targ[4][3], course[4];
 	double r, dummy;
 	int key, n, i, osuabor;
@@ -942,7 +968,10 @@ void photon(void) {
 
 	
 
-static void overheat(double rpow) {
+static void
+overheat(rpow)
+	double rpow;
+{
 	if (rpow > 1500) {
 		double chekbrn = (rpow-1500.)*0.00038;
 		if (Rand() <= chekbrn) {
@@ -952,7 +981,10 @@ static void overheat(double rpow) {
 	}
 }
 
-static int checkshctrl(double rpow) {
+static int
+checkshctrl(rpow)
+	double rpow;
+{
 	double hit;
 	int icas;
 	
@@ -996,7 +1028,9 @@ static int checkshctrl(double rpow) {
 }
 	
 
-void phasers(void) {
+void
+phasers()
+{
 	double hits[21], rpow, extra, powrem, over, temp;
 	int kz = 0, k=1, i; /* Cheating inhibitor */
 	int ifast=0, no=0, ipoop=1, msgflag = 1;
@@ -1290,7 +1324,10 @@ void phasers(void) {
 	overheat(rpow);
 }
 
-void hittem(double *hits) {
+void
+hittem(hits)
+	double *hits;
+{
 	double kp, kpow, wham, hit, dustfac, kpini;
 	int nenhr2=nenhere, k=1, kk=1, ii, jj, ienm;
 
@@ -1381,10 +1418,10 @@ void hittem(double *hits) {
 **	etc.
 */
 
-int selectklingon(void);
+int selectklingon();
 
 void
-   capture(void)
+capture()
 {
 	int i;
 	int k;
@@ -1475,7 +1512,8 @@ void
  **	surrender (Tom Almy mod)
  */
 
-int selectklingon()
+int
+selectklingon()
 {
 	int		i;
 

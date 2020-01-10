@@ -1,8 +1,10 @@
 #include "sst.h"
 
-static void getcd(int, int);
+static void getcd();
 
-void lmove(void) {
+void
+lmove()
+{
 	double angle, deltax, deltay, bigger, x, y,
     finald, finalx, finaly, stopegy;
     int oldquadx, oldquady;
@@ -207,7 +209,9 @@ label100:
 	return;
 }
 
-void dock(void) {
+void
+dock()
+{
 	chew();
 	if (condit == IHDOCKED) {
 		prout("Already docked.");
@@ -251,7 +255,10 @@ void dock(void) {
 	}
 }
 
-static void getcd(int isprobe, int akey) {
+static void
+getcd(isprobe, akey)
+	int isprobe, akey;
+{
 	/* This program originally required input in terms of a (clock)
 	   direction and distance. Somewhere in history, it was changed to
 	   cartesian coordinates. So we need to convert. I think
@@ -448,7 +455,9 @@ static void getcd(int isprobe, int akey) {
 		
 
 
-void impuls(void) {
+void
+impuls()
+{
 	double power;
 
 	ididit = 0;
@@ -504,7 +513,10 @@ void impuls(void) {
 }
 
 
-void warp(int i) {
+void
+warp(i)
+	int i;
+{
 	int blooey=0, twarp=0, iwarp;
 	double power;
 
@@ -647,7 +659,9 @@ void warp(int i) {
 
 
 
-void setwrp(void) {
+void
+setwrp()
+{
 	int key;
 	double oldfac;
 	
@@ -698,7 +712,10 @@ void setwrp(void) {
 	return;
 }
 
-void atover(int igrab) {
+void
+atover(igrab)
+	int igrab;
+{
 	double power, distreq;
 
 	chew();
@@ -790,7 +807,9 @@ void atover(int igrab) {
 	if (d.remkl==0) finish(FWON); /* Snova killed remaining enemy. */
 }
 
-void timwrp() {
+void
+timwrp()
+{
 	int l, ll, gotit;
 	prout("***TIME WARP ENTERED.");
 	if (d.snap && Rand() < 0.5) {
@@ -854,7 +873,9 @@ void timwrp() {
 	newqad(0);
 }
 
-void probe(void) {
+void
+probe()
+{
 	double angle, bigger;
 	int key;
 	/* New code to launch a deep space probe */
@@ -926,7 +947,9 @@ void probe(void) {
 	return;
 }
 
-void help(void) {
+void
+help()
+{
 	/* There's more than one way to move in this game! */
 	double ddist, xdist, probf;
 	int line, l, ix, iy;

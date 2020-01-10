@@ -395,68 +395,68 @@ char *device[ndevice+1] = {
 
 
 /* Function prototypes */
-void prelim(void);
+void prelim();
 void attack(int);
-int choose(void);
-void setup(void);
+int choose();
+void setup();
 void score(int);
 void atover(int);
 void srscan(int);
-void lrscan(void);
-void phasers(void);
-void photon(void);
+void lrscan();
+void phasers();
+void photon();
 void warp(int);
 void sheild(int);
-void dock(void);
-void dreprt(void);
+void dock();
+void dreprt();
 void chart(int);
-void impuls(void);
-void waiting(void);
-void setwrp(void);
-void events(void);
+void impuls();
+void waiting();
+void setwrp();
+void events();
 void report(int);
-void eta(void);
-void help(void);
-void abandn(void);
+void eta();
+void help();
+void abandn();
 void finish(FINTYPE);
-void dstrct(void);
-void kaboom(void);
+void dstrct();
+void kaboom();
 void freeze(int);
-void thaw(void);
-void plaque(void);
-int scan(void);
+void thaw();
+void plaque();
+int scan();
 #define IHEOL (0)
 #define IHALPHA (1)
 #define IHREAL (2)
-void chew(void);
-void chew2(void);
+void chew();
+void chew2();
 void skip(int);
 void prout(char *s);
 void proutn(char *s);
-void stars(void);
+void stars();
 void newqad(int);
-int ja(void);
+int ja();
 void cramen(int);
-void crmshp(void);
+void crmshp();
 void cramlc(int, int, int);
 double expran(double);
-double Rand(void);
+double Rand();
 void iran8(int *, int *);
 void iran10(int *, int *);
 double square(double);
 void dropin(int, int*, int*);
-void newcnd(void);
-void sortkl(void);
-void lmove(void);
+void newcnd();
+void sortkl();
+void lmove();
 void ram(int, int, int, int);
 void crmena(int, int, int, int, int);
 void deadkl(int, int, int, int, int);
-void timwrp(void);
-void movcom(void);
+void timwrp();
+void movcom();
 void torpedo(double, double, int, int, double *);
 void cramf(double, int, int);
 void crami(int, int);
-void huh(void);
+void huh();
 void pause(int);
 void nova(int, int);
 void snova(int, int);
@@ -464,31 +464,31 @@ void scom(int *);
 void hittem(double *);
 void prouts(char *);
 int isit(char *);
-void preport(void);
-void orbit(void);
-void sensor(void);
-void beam(void);
-void mine(void);
-void usecrystals(void);
-void shuttle(void);
-void deathray(void);
-void debugme(void);
-void attakreport(void);
-void movetho(void);
-void probe(void);
+void preport();
+void orbit();
+void sensor();
+void beam();
+void mine();
+void usecrystals();
+void shuttle();
+void deathray();
+void debugme();
+void attakreport();
+void movetho();
+void probe();
 
 #ifndef WINDOWS
 int min(int, int);
 int max(int, int);
 #endif
-void randomize(void);
-int getch(void);
+void randomize();
+int getch();
 
 #ifdef CLOAKING
-void cloak(void);
+void cloak();
 #endif
 #ifdef CAPTURE
-void capture(void);
+void capture();
 #endif
 
 #ifdef CLOAKING

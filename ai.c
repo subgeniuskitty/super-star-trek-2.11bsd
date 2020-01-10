@@ -1,6 +1,9 @@
 #include "sst.h"
 
-static int tryexit(int lookx, int looky, int ienm, int loccom, int irun) {
+static int
+tryexit(lookx, looky, ienm, loccom, irun)
+	int lookx, looky, ienm, loccom, irun;
+{
 	int iqx, iqy, l;
 
 	iqx = quadx+(lookx+9)/10 - 1;
@@ -66,7 +69,10 @@ static int tryexit(int lookx, int looky, int ienm, int loccom, int irun) {
 }
 
 
-static void movebaddy(int comx, int comy, int loccom, int ienm) {
+static void
+movebaddy(comx, comy, loccom, ienm)
+	int comx, comy, loccom, ienm;
+{
 	int motion, mdist, nsteps, mx, my, nextx, nexty, lookx, looky, ll;
 	int irun = 0;
 	int krawlx, krawly;
@@ -268,7 +274,9 @@ static void movebaddy(int comx, int comy, int loccom, int ienm) {
 	}
 }
 
-void movcom(void) {
+void
+movcom()
+{
 	int ix, iy, i;
 
 #ifdef DEBUG
@@ -306,7 +314,10 @@ void movcom(void) {
 	sortkl();
 }
 
-static int checkdest(int iqx, int iqy, int flag, int *ipage) {
+static int
+checkdest(iqx, iqy, flag, ipage)
+	int iqx, iqy, flag, *ipage;
+{
 	int i;
 
 	if ((iqx==quadx && iqy==quady) ||
@@ -369,7 +380,10 @@ static int checkdest(int iqx, int iqy, int flag, int *ipage) {
 	
 
 
-void scom(int *ipage) {
+void
+scom(ipage)
+	int *ipage;
+{
 	int i, i2, j, ideltax, ideltay, ibqx, ibqy, sx, sy, ifindit, iwhichb;
 	int iqx, iqy;
 	int basetbl[6];
@@ -548,7 +562,9 @@ void scom(int *ipage) {
 	return;
 }
 
-void movetho(void) {
+void
+movetho()
+{
 	int idx, idy, im, i, dum, my;
 	/* Move the Tholian */
 	if (ithere==0 || justin == 1) return;

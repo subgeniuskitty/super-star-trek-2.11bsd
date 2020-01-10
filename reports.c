@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-void attakreport(void) {
+void
+attakreport()
+{
 	if (future[FCDBAS] < 1e30) {
 		proutn("Starbase in ");
 		cramlc(1, batx, baty);
@@ -23,7 +25,10 @@ void attakreport(void) {
 }
 	
 
-void report(int f) {
+void
+report(f)
+	int f;
+{
 	char *s1,*s2,*s3;
 
 	chew();
@@ -116,7 +121,9 @@ void report(int f) {
 	skip(1);
 }
 	
-void lrscan(void) {
+void
+lrscan()
+{
 	int x, y;
 	chew();
 	if (damage[DLRSENS] != 0.0) {
@@ -169,7 +176,9 @@ void lrscan(void) {
 
 }
 
-void dreprt(void) {
+void
+dreprt()
+{
 	int jdam = FALSE, i;
 	chew();
 
@@ -196,7 +205,10 @@ void dreprt(void) {
 	if (!jdam) prout("All devices functional.");
 }
 
-void chart(int nn) {
+void
+chart(nn)
+	int nn;
+{
 	int i,j;
 
 	chew();
@@ -266,7 +278,10 @@ void chart(int nn) {
 }
 		
 		
-void srscan(int l) {
+void
+srscan(l)
+	int l;
+{
 	static char requests[][3] =
 		{"","da","co","po","ls","wa","en","to","sh","kl","ti"};
 	char *cp;
@@ -403,7 +418,9 @@ void srscan(int l) {
 }
 			
 			
-void eta(void) {
+void
+eta()
+{
 	int ix1, ix2, iy1, iy2, prompt=FALSE;
 	int wfl;
 	double ttime, twarp, tpower;

@@ -1,7 +1,9 @@
 #include <time.h>
 #include "sst.h"
 
-void prelim(void) {
+void
+prelim()
+{
 	skip(2);
 	prout("-SUPER- STAR TREK");
 	skip(1);
@@ -9,7 +11,10 @@ void prelim(void) {
 	skip(1);
 }
 
-void freeze(int boss) {
+void
+freeze(boss)
+	int boss;
+{
 	FILE *fp;
 	int key;
 	if (boss) {
@@ -55,7 +60,9 @@ void freeze(int boss) {
 }
 
 
-void thaw(void) {
+void
+thaw()
+{
 	FILE *fp;
 	int key;
 
@@ -97,7 +104,9 @@ void thaw(void) {
 	/* I hope that's enough! */
 }
 
-void abandn(void) {
+void
+abandn()
+{
 	int nb, l;
 
 	chew();
@@ -202,7 +211,9 @@ void abandn(void) {
 	return;
 }
 	
-void setup(void) {
+void
+setup()
+{
 	int i,j, krem, klumper;
 	int ix, iy;
 	alldone = gamewon = 0;
@@ -401,7 +412,9 @@ void setup(void) {
 	if (neutz) attack(0);	/* bad luck to start in a Romulan Neutral Zone */
 }
 
-int choose(void) {
+int
+choose()
+{
 	tourn = 0;
 	thawed = 0;
 	skill = 0;
@@ -512,13 +525,18 @@ int choose(void) {
 	return FALSE;
 }
 
-void dropin(int iquad, int *ix, int *iy) {
+void
+dropin(iquad, ix, iy)
+	int iquad, *ix, *iy;
+{
 	do iran10(ix, iy);
 	while (quad[*ix][*iy] != IHDOT);
 	quad[*ix][*iy] = iquad;
 }
 
-void newcnd(void) {
+void
+newcnd()
+{
 	condit = IHGREEN;
 	if (energy < 1000.0) condit = IHYELLOW;
 	if (d.galaxy[quadx][quady] > 99 || d.newstuf[quadx][quady] > 9)
@@ -526,7 +544,10 @@ void newcnd(void) {
 }
 
 
-void newqad(int shutup) {
+void
+newqad(shutup)
+	int shutup;
+{
 	int quadnum = d.galaxy[quadx][quady];
 	int newnum = d.newstuf[quadx][quady];
 	int i, j, ix, iy, nplan;
@@ -688,7 +709,9 @@ void newqad(int shutup) {
 	}		
 }
 
-void sortkl(void) {
+void
+sortkl()
+{
 	double t;
 	int sw, j, k;
 

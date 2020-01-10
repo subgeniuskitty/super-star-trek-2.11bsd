@@ -7,22 +7,32 @@
 #include <unistd.h>
 #endif
 
-void randomize(void) {
+void
+randomize()
+{
 	srand((int)time(NULL));
 }
 
 #ifndef WINDOWS
-int max(int a, int b) {
+int
+max(a, b)
+	int a, b;
+{
 	if (a > b) return a;
 	return b;
 }
 
-int min(int a, int b) {
+int
+min(a, b) {
+	int a, b;
+{
 	if (a < b) return a;
 	return b;
 }
 
-int getch(void) {
+int
+getch()
+{
     char chbuf[1];
     struct termios oldstate, newstate;
     fflush(stdout);
@@ -36,5 +46,3 @@ int getch(void) {
         return chbuf[0];
 }
 #endif
-
-

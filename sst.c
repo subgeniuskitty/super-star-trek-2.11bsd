@@ -6,48 +6,44 @@
 #endif
 #include <time.h>
 	
-/*int getch(void);
-*/
-
 static char line[128], *linep = line;
 static int linecount;	/* for paging */
 
-static void clearscreen(void);
+static void clearscreen();
 
 /* Compared to original version, I've changed the "help" command to
-   "call" and the "terminate" command to "quit" to better match
-   user expectations. The DECUS version apparently made those changes
-   as well as changing "freeze" to "save". However I like "freeze".
-
-   When I got a later version of Super Star Trek that I was converting
-   from, I added the emexit command.
-
-   That later version also mentions srscan and lrscan working when
-   docked (using the starbase's scanners), so I made some changes here
-   to do this (and indicating that fact to the player), and then realized
-   the base would have a subspace radio as well -- doing a Chart when docked
-   updates the star chart, and all radio reports will be heard. The Dock
-   command will also give a report if a base is under attack.
-
-   Movecom no longer reports movement if sensors are damaged so you wouldn't
-   otherwise know it.
-
-   Also added:
-
-   1. Better base positioning at startup
-
-   2. deathray improvement (but keeping original failure alternatives)
-
-   3. Tholian Web
-
-   4. Enemies can ram the Enterprise. Regular Klingons and Romulans can
-      move in Expert and Emeritus games. This code could use improvement.
-
-   5. The deep space probe looks interesting! DECUS version
-
-   6. Cloaking (with contributions from Erik Olofsen) and Capturing (BSD version).
-
-   */
+ * "call" and the "terminate" command to "quit" to better match
+ * user expectations. The DECUS version apparently made those changes
+ * as well as changing "freeze" to "save". However I like "freeze".
+ *
+ * When I got a later version of Super Star Trek that I was converting
+ * from, I added the emexit command.
+ *
+ * That later version also mentions srscan and lrscan working when
+ * docked (using the starbase's scanners), so I made some changes here
+ * to do this (and indicating that fact to the player), and then realized
+ * the base would have a subspace radio as well -- doing a Chart when docked
+ * updates the star chart, and all radio reports will be heard. The Dock
+ * command will also give a report if a base is under attack.
+ *
+ * Movecom no longer reports movement if sensors are damaged so you wouldn't
+ * otherwise know it.
+ *
+ * Also added:
+ *
+ * 1. Better base positioning at startup
+ *
+ * 2. deathray improvement (but keeping original failure alternatives)
+ *
+ * 3. Tholian Web
+ *
+ * 4. Enemies can ram the Enterprise. Regular Klingons and Romulans can
+ *    move in Expert and Emeritus games. This code could use improvement.
+ *
+ * 5. The deep space probe looks interesting! DECUS version
+ *
+ * 6. Cloaking (with contributions from Erik Olofsen) and Capturing (BSD version).
+ */
 
 /* I don't like the way this is done, relying on an index. But I don't */
 /* want to invest the time to make this nice and table driven. */
@@ -95,7 +91,10 @@ static char *commands[] = {
 
 #define NUMCOMMANDS (sizeof(commands)/sizeof(char *))
 
-static void listCommands(int x) {
+static void
+listCommands(x)
+	int x;
+{
 	prout("   SRSCAN    MOVE      PHASERS   CALL\n"
 		  "   STATUS    IMPULSE   PHOTONS   ABANDON\n"
 		  "   LRSCAN    WARP      SHIELDS   DESTRUCT\n"
@@ -103,7 +102,7 @@ static void listCommands(int x) {
 		  "   DAMAGES   REPORT    SENSORS   ORBIT\n"
 		  "   TRANSPORT MINE      CRYSTALS  SHUTTLE\n"
 		  "   PLANETS   REQUEST   DEATHRAY  FREEZE\n"
-          "   COMPUTER  EMEXIT    PROBE     COMMANDS");
+		  "   COMPUTER  EMEXIT    PROBE     COMMANDS");
     proutn("   ");
 #ifdef SCORE
     proutn("SCORE     ");
@@ -118,7 +117,9 @@ static void listCommands(int x) {
     prout("");
 }
 
-static void helpme(void) {
+static void
+helpme()
+{
 	int i, j;
 	char cmdbuf[32];
 	char linebuf[132];
@@ -181,7 +182,9 @@ static void helpme(void) {
 	fclose(fp);
 }
 
-static void makemoves(void) {
+static void
+makemoves()
+{
     int i, hitme;
     while (TRUE) { /* command loop */
         hitme = FALSE;
@@ -420,7 +423,11 @@ static void makemoves(void) {
 }
 
 
-int main(int argc, char **argv) {
+int
+main(argc, argv)
+	int argc;
+	char **argv;
+{
 	prelim();
 
 	if (argc > 1) { /* look for -f option */
@@ -470,7 +477,10 @@ int main(int argc, char **argv) {
 }
 
 
-void cramen(int i) {
+void
+cramen(i)
+	int i;
+{
 	/* return an enemy */
 	char *s;
 	
@@ -490,7 +500,10 @@ void cramen(int i) {
 	proutn(s);
 }
 
-void cramlc(int key, int x, int y) {
+void
+cramlc(key, x, y)
+	int key, x, y;
+{
 	if (key == 1) proutn(" Quadrant");
 	else if (key == 2) proutn(" Sector");
 	proutn(" ");
@@ -499,14 +512,19 @@ void cramlc(int key, int x, int y) {
 	crami(y, 1);
 }
 
-void crmena(int i, int enemy, int key, int x, int y) {
+void
+crmena(i, enemy, key, x, y)
+	int i, enemy, key, x, y;
+{
 	if (i == 1) proutn("***");
 	cramen(enemy);
 	proutn(" at");
 	cramlc(key, x, y);
 }
 
-void crmshp(void) {
+void
+crmshp()
+{
 	char *s;
 	switch (ship) {
 		case IHE: s = "Enterprise"; break;
@@ -516,43 +534,62 @@ void crmshp(void) {
 	proutn(s);
 }
 
-void stars(void) {
+void
+stars()
+{
 	prouts("******************************************************");
 	skip(1);
 }
 
-double expran(double avrage) {
+double
+expran(avrage)
+	double avrage;
+{
 	return -avrage*log(1e-7 + Rand());
 }
 
-double Rand(void) {
+double
+Rand()
+{
 	return rand()/(1.0 + (double)RAND_MAX);
 }
 
-void iran8(int *i, int *j) {
+void
+iran8(i, j)
+	int *i, *j;
+{
 	*i = Rand()*8.0 + 1.0;
 	*j = Rand()*8.0 + 1.0;
 }
 
-void iran10(int *i, int *j) {
+void
+iran10(i, j)
+	int *i, *j;
+{
 	*i = Rand()*10.0 + 1.0;
 	*j = Rand()*10.0 + 1.0;
 }
 
-void chew(void) {
+void
+chew()
+{
 	linecount = 0;
 	linep = line;
 	*linep = 0;
 }
 
-void chew2(void) {
+void
+chew2()
+{
 	/* return IHEOL next time */
 	linecount = 0;
 	linep = line+1;
 	*linep = 0;
 }
 
-int scan(void) {
+int
+scan()
+{
 	int i;
 	char *cp;
 
@@ -605,7 +642,9 @@ int scan(void) {
 	return IHALPHA;
 }
 
-int ja(void) {
+int
+ja()
+{
 	chew();
 	while (TRUE) {
 		scan();
@@ -616,28 +655,45 @@ int ja(void) {
 	}
 }
 
-void cramf(double x, int w, int d) {
+void
+cramf(x, w, d)
+	double x;
+	int w, d;
+{
 	char buf[64];
 	sprintf(buf, "%*.*f", w, d, x);
 	proutn(buf);
 }
 
-void crami(int i, int w) {
+void
+crami(i, w)
+	int i, w;
+{
 	char buf[16];
 	sprintf(buf, "%*d", w, i);
 	proutn(buf);
 }
 
-double square(double i) { return i*i; }
+double
+square(i)
+	double i;
+{
+	return i*i;
+}
 									
-static void clearscreen(void) {
+static void
+clearscreen()
+{
 	/* Somehow we need to clear the screen */
 	proutn("\033[2J\033[0;0H");	/* Hope for an ANSI display */
 }
 
 /* We will pull these out in case we want to do something special later */
 
-void pause(int i) {
+void
+pause(i)
+	int i;
+{
 #ifdef CLOAKING
 	if (iscloaked) return;
 #endif
@@ -664,7 +720,10 @@ void pause(int i) {
 }
 
 
-void skip(int i) {
+void
+skip(i)
+	int i;
+{
 	while (i-- > 0) {
 		linecount++;
 		if (linecount >= 23)
@@ -675,16 +734,25 @@ void skip(int i) {
 }
 
 
-void proutn(char *s) {
+void
+proutn(s)
+	char *s;
+{
 	fputs(s, stdout);
 }
 
-void prout(char *s) {
+void
+prout(s)
+	char *s;
+{
 	proutn(s);
 	skip(1);
 }
 
-void prouts(char *s) {
+void
+prouts(s)
+	char *s;
+{
 	clock_t endTime;
 	/* print slowly! */
 	while (*s) {
@@ -695,13 +763,18 @@ void prouts(char *s) {
 	}
 }
 
-void huh(void) {
+void
+huh()
+{
 	chew();
 	skip(1);
 	prout("Beg your pardon, Captain?");
 }
 
-int isit(char *s) {
+int
+isit(s)
+	char *s;
+{
 	/* New function -- compares s to scaned citem and returns true if it
 	   matches to the length of s */
 
@@ -710,7 +783,9 @@ int isit(char *s) {
 }
 
 #ifdef DEBUG
-void debugme(void) {
+void
+debugme()
+{
 	proutn("Reset levels? ");
 	if (ja() != 0) {
 		if (energy < inenrg) energy = inenrg;
@@ -782,6 +857,5 @@ void debugme(void) {
 		}
 	}
 }
-			
 
 #endif

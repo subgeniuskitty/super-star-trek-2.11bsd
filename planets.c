@@ -3,7 +3,9 @@
 static char classes[4][2]={"","M","N","O"};
 static int height;
 
-static int consumeTime(void) {
+static int
+consumeTime()
+{
 /* I think most of this avoidance was caused by overlay scheme.
    Let's see what happens if all events can occur here */
 
@@ -26,7 +28,9 @@ static int consumeTime(void) {
 	return 0;
 }
 
-void preport(void) {
+void
+preport()
+{
 	int iknow = 0, i;
 	skip(1);
 	chew();
@@ -55,7 +59,9 @@ void preport(void) {
 	if (iknow==0) prout("No information available.");
 }
 
-void orbit(void) {
+void
+orbit()
+{
 
 	skip(1);
 	chew();
@@ -84,7 +90,9 @@ void orbit(void) {
 	return;
 }
 
-void sensor(void) {
+void
+sensor()
+{
 	skip(1);
 	chew();
 	if (damage[DSRSENS] != 0.0) {
@@ -113,7 +121,9 @@ void sensor(void) {
 	return;
 }
 
-void beam(void) {
+void
+beam()
+{
 	chew();
 	skip(1);
 	if (damage[DTRANSP] != 0) {
@@ -199,7 +209,9 @@ void beam(void) {
 	return;
 }
 
-void mine(void) {
+void
+mine()
+{
 
 	ididit = 0;
 	skip(1);
@@ -230,7 +242,9 @@ void mine(void) {
 	return;
 }
 
-void usecrystals(void) {
+void
+usecrystals()
+{
 
 	skip(1);
 	chew();
@@ -280,7 +294,9 @@ void usecrystals(void) {
 	return;
 }
 
-void shuttle(void) {
+void
+shuttle()
+{
 
 	chew();
 	skip(1);
@@ -397,7 +413,9 @@ void shuttle(void) {
 }
 		
 
-void deathray(void) {
+void
+deathray()
+{
 	double r = Rand();
 	
 	ididit = 0;

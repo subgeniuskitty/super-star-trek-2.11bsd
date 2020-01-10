@@ -2,7 +2,9 @@
 #include <string.h>
 #include <time.h>
 
-void dstrct() {
+void
+dstrct()
+{
 	/* Finish with a BANG! */
 	chew();
 	if (damage[DCOMPTR] != 0.0) {
@@ -42,7 +44,9 @@ void dstrct() {
 	kaboom();
 }
 
-void kaboom(void) {
+void
+kaboom()
+{
 	stars();
 	if (ship==IHE) prouts("***");
 	prouts("********* Entropy of ");
@@ -64,7 +68,10 @@ void kaboom(void) {
 }
 				
 
-void finish(FINTYPE ifin) {
+void
+finish(ifin)
+	FINTYPE ifin;
+{
 	int igotit = 0;
 	alldone = 1;
 	skip(3);
@@ -327,7 +334,10 @@ void finish(FINTYPE ifin) {
 	score(0);
 }
 
-void score(int inGame) {
+void
+score(inGame)
+	int inGame;
+{
 	double timused = d.date - indate;
     int ithperd, iwon, klship;
     int dnromrem = d.nromrem; /* Leave global value alone */
@@ -422,7 +432,9 @@ void score(int inGame) {
     if (inGame && skill < SGOOD) printf("REMEMBER--The score doesn't really matter until the mission is accomplished!\n");
 }
 
-void plaque(void) {
+void
+plaque()
+{
 	FILE *fp=NULL;
 	time_t t;
 	char *timestring;
